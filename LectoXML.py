@@ -53,6 +53,13 @@ try:
                         print(f"Fin en  x: {atrib.find('x').text}")
                         print(f"Fin en y: {atrib.find('y').text}")
 
+                    if atrib.tag == 'posicion':
+                        print("\nPosicion ")
+                        print(f"x: {atrib.get('x')}")
+                        print(f"y: {atrib.get('y')}")
+                        print(f"Gasto de combustible: {atrib.get('posicion')}")
+                       # print(f"x: {atrib.get('x').text}")
+
             print("--------------------------------------------")
     else:
         print(False)

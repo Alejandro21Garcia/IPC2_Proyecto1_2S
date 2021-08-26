@@ -1,25 +1,8 @@
 from tkinter import filedialog, Tk
 import os
+import LectoXML
 
-def abrir():
-    Tk().withdraw()
-    archivo = filedialog.askopenfile(
-        title = "Seleccionar un archivo XML",
-        initialdir = "./",
-        filetypes = (
-            ("Archivos XML", "*.xml"),
-            ("Todos los archivos","*.*")
-        )
-    )
 
-    if archivo is None:
-        print("Error de lectura")
-        return None
-    else:
-        texto = archivo.read()
-        archivo.close()
-        print("Lectura Exitosa")
-        return texto
 
 def menu():
     print('\n------------------------------------------------------------------------')
@@ -35,26 +18,20 @@ def menu():
 if __name__=='__main__':
     clear = lambda: os.system('cls')
 
+
     #txt = abrir()
 
     ciclo = True
+
+
     while (ciclo):
 
         opcion = menu()
 
         if opcion == "1":
             print('\nCargando archivo de entrada')
-
-            txt = abrir()
-            if txt is not None:
-                if txt == '':
-                    print("Archivo vacio")
-                else:
-                    print(txt)
-                 ##   print(analizador(txt))
-
-            else:
-                print("Vuelva a intentarlo por favor")
+            datos = LectoXML.abrir()
+            mostrar = LectoXML.mostrandoDatos(datos)
 
 
         elif opcion == "2":
