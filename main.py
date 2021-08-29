@@ -11,11 +11,12 @@ def menu():
     print('2. Procesar archivo')
     print('3. Escribir un archivo de salida')
     print('4. Mostrar datos del Estudiante')
-    print('3. Generar Gráfica')
-    print('4. Salir')
+    print('5. Generar Gráfica')
+    print('6. Salir')
     opcion = input('Ingrese su opcion: ')
     return opcion
 if __name__=='__main__':
+
     clear = lambda: os.system('cls')
 
 
@@ -30,9 +31,7 @@ if __name__=='__main__':
 
         if opcion == "1":
             print('\nCargando archivo de entrada')
-            datos = LectoXML.abrir()
-            mostrar = LectoXML.mostrandoDatos(datos)
-
+            datos = LectoXML.mostrardatos()
 
         elif opcion == "2":
             print('Procesar archivo')
@@ -40,10 +39,15 @@ if __name__=='__main__':
 
 
         elif opcion == "3":
-            print('Escribir archivo de saida')
+            print('Escribir archivo de salida')
 
         elif opcion == "4":
-            print('Mostrar datos del Estudiante')
+            print('\nMostrar datos del Estudiante')
+            print(">Alejandro José García Hernández"
+                  "\n>201800939"
+                  "\n>Introducción a la Programación y Computación 2 sección E"
+                  "\n>Ingenieria en Ciencias y Sistemas"
+                  "\n>4to Semestre")
 
         elif opcion == "5":
             print('Generar Gráfica')
@@ -51,8 +55,15 @@ if __name__=='__main__':
 
         elif opcion == "4":
             print('\nProgrma Finalizado')
-            input()
+
+
+        elif opcion == "5":
+            print('\nProgrma Finalizado')
+
+        elif opcion == "6":
+            print('\nProgrma Finalizado')
             ciclo = False
+
 
         else:
             print("Opcion no valida")

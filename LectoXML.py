@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 from tkinter import filedialog, Tk
 from os import path
+import ListaSimple
 
 def abrir():
     Tk().withdraw()
@@ -22,48 +23,50 @@ def abrir():
         archivo.close()
         print("Lectura Exitosa\n")
         return texto
-data = abrir()
 
 
-try:
-    xml_file = open(data)#apertura
-    if xml_file.readable():
-        xml_data = ET.fromstring(xml_file.read())
-        lst_datos = xml_data.findall('TERRENO')
+def mostrardatos():
 
-        for terrn in lst_datos:
+    data = abrir()
+    try:
+        xml_file = open(data)#apertura
+        if xml_file.readable():
+            xml_data = ET.fromstring(xml_file.read())
+            lst_datos = xml_data.findall('terreno' or 'TERRENO')
 
-            if terrn.tag == 'TERRENO':
-                print(terrn.get('nombre'))
+            for terrn in lst_datos:
 
-                for atrib in terrn:
+                if terrn.tag == 'TERRENO' or terrn.tag == 'terreno':
+                    print(terrn.get('nombre'))
 
-                    if atrib.tag == 'DIMENSION':
-                        print("\nDimensiones de la matriz: ")
-                        print(f"m: {atrib.find('m').text}")
-                        print(f"n: {atrib.find('n').text}")
+                    for atrib in terrn:
 
-                    if atrib.tag == 'posicioninicio':
-                        print("\nPosicion de inicio")
-                        print(f"Inicio en  x: {atrib.find('x').text}")
-                        print(f"Inicio en y: {atrib.find('y').text}")
+                        if atrib.tag == 'DIMENSION':
+                            print("\nDimensiones de la matriz: ")
+                            print(f"m: {atrib.find('m').text}")
+                            print(f"n: {atrib.find('n').text}")
 
-                    if atrib.tag == 'posicionfin':
-                        print("\nPosicion fin")
-                        print(f"Fin en  x: {atrib.find('x').text}")
-                        print(f"Fin en y: {atrib.find('y').text}")
+                        if atrib.tag == 'posicioninicio':
+                            print("\nPosiciones de inicio")
+                            print(f"Inicio en  x: {atrib.find('x').text}")
+                            print(f"Inicio en y: {atrib.find('y').text}")
 
-                    if atrib.tag == 'posicion':
-                        print("\nPosicion ")
-                        print(f"x: {atrib.get('x')}")
-                        print(f"y: {atrib.get('y')}")
-                        print(f"Gasto de combustible: {atrib.get('posicion')}")
-                       # print(f"x: {atrib.get('x').text}")
+                        if atrib.tag == 'posicionfin':
+                            print("\nPosiciones de fin")
+                            print(f"Fin en  x: {atrib.find('x').text}")
+                            print(f"Fin en y: {atrib.find('y').text}")
 
-            print("--------------------------------------------")
-    else:
-        print(False)
-except Exception as err:
-    print("Error:", err)
-finally:
-    xml_file.close()
+                        """if atrib.tag == 'posicion':
+                            print("\nPosicion ")
+                            print(f"x: {atrib.get('x')}")
+                            print(f"y: {atrib.get('y')}")
+                            print(f"Gasto de combustible: {atrib.get('posicion')}")
+                           # print(f"x: {atrib.get('x').text}")"""
+
+                print("--------------------------------------------")
+        else:
+            print(False)
+    except Exception as err:
+        print("Error:", err)
+    finally:
+        xml_file.close()
