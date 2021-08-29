@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from tkinter import filedialog, Tk
+from ListaSimple import *
 from os import path
-import ListaSimple
 
 def abrir():
     Tk().withdraw()
